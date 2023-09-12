@@ -51,7 +51,7 @@ export function App() {
             selecionado.
           </p>
         </div>
-        <aside className="w-80 space-y-2">
+        <aside className="w-80 space-y-6">
           <form className="space-y-6">
             <label
               htmlFor="video"

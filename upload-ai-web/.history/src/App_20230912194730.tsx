@@ -51,8 +51,8 @@ export function App() {
             selecionado.
           </p>
         </div>
-        <aside className="w-80 space-y-2">
-          <form className="space-y-6">
+        <aside className="w-80 space-y-6">
+        <form className="space-y-6">
             <label
               htmlFor="video"
               className="border flex rounded-md aspect-video cursor-pointer border-dashed text-sm flex-col gap-2 items-center justify-center text-muted-foreground hover:bg-primary/5"
@@ -61,19 +61,12 @@ export function App() {
               Selecione um vídeo
             </label>
 
-            <input
-              type="file"
-              id="video"
-              accept="video/mp4"
-              className="sr-only"
-            />
+            <input type="file" id="video" accept="video/mp4" className="sr-only" />
 
             <Separator />
 
             <div className="space-y-2">
-              <Label htmlFor="transcription_prompt">
-                Prompt de transcrição
-              </Label>
+              <Label htmlFor="transcription_prompt">Prompt de transcrição</Label>
               <Textarea
                 id="transcription_prompt"
                 className="h-20 leading-relaxed resize-none"
@@ -98,9 +91,7 @@ export function App() {
                 </SelectTrigger>
                 <SelectContent>
                   <SelectItem value="title">Título do YouTube</SelectItem>
-                  <SelectItem value="description">
-                    Descrição do YouTube
-                  </SelectItem>
+                  <SelectItem value="description">Descrição do YouTube</SelectItem>
                 </SelectContent>
               </Select>
             </div>
@@ -124,10 +115,13 @@ export function App() {
 
             <div className="space-y-4">
               <Label>Temperatura</Label>
-              <Slider min={0} max={1} step={0.1} />
+              <Slider
+                min={0}
+                max={1}
+                step={0.1}
+              />
               <span className="block text-sm text-muted-foreground italic leading-relaxed">
-                Valores mais altor tendem a deixar o resultado mais criativo e
-                com possíveis erros.
+                Valores mais altor tendem a deixar o resultado mais criativo e com possíveis erros.
               </span>
             </div>
 
