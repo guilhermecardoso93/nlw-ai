@@ -73,7 +73,6 @@ export function App() {
               placeholder="Resultado gerando pela IA..."
               readOnly
               className="resize-none p-4 leading-relaxed"
-              value={completion}
             />
           </div>
           <p className="text-sm text-muted-foreground">
@@ -87,7 +86,7 @@ export function App() {
           <VideoForm onVideoUploaded={setVideoId} />
           <Separator />
 
-          <form onSubmit={handleSubmit} className="space-y-6">
+          <form className="space-y-6">
             <div className="space-y-2">
               <Label>Prompt</Label>
               <PromptSelect onPromptSelected={setInput} />
@@ -127,7 +126,7 @@ export function App() {
 
             <Separator />
 
-            <Button type="submit" className="w-full" disabled={isLoading}>
+            <Button type="submit" className="w-full">
               Executar
               <Wand2 className="w-4 h-4 ml-2" />
             </Button>

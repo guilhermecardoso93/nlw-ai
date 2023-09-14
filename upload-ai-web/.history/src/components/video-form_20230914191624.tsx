@@ -8,20 +8,19 @@ import { getFFmpeg } from "@/lib/ffmpeg";
 import { fetchFile } from "@ffmpeg/util";
 import { api } from "@/lib/axios";
 
-type Status = "waiting" | "converting" | "uploading" | "generating" | "success";
+type Status = 'waiting' | 'converting' | 'uploading' | 'generating' | 'success'
 
 const statusMessages = {
-  converting: "Convertendo...",
-  generating: "Transcrevendo...",
-  uploading: "Carregando...",
-  success: "Sucesso!",
-};
-
-interface VideoInputFormProps {
-  onVideoUploaded: (id: string) => void;
+  converting: 'Convertendo...',
+  generating: 'Transcrevendo...',
+  uploading: 'Carregando...',
+  success: 'Sucesso!',
 }
 
-export function VideoForm(props: VideoInputFormProps) {
+interface VideoInputFormProps {
+  onVideoUploaded: (id: string) => void
+}
+export function VideoForm() {
   const [videoFile, setVideoFile] = useState<File | null>(null);
   const [status, setStatus] = useState<Status>("waiting");
   const promptInputRef = useRef<HTMLTextAreaElement>(null);
@@ -108,8 +107,6 @@ export function VideoForm(props: VideoInputFormProps) {
     });
 
     setStatus("success");
-
-    props.onVideoUploaded(videoId)
   }
 
   const previewURL = useMemo(() => {
@@ -161,20 +158,9 @@ export function VideoForm(props: VideoInputFormProps) {
         />
       </div>
 
-      <Button
-        data-success={status === "success"}
-        disabled={status !== "waiting"}
-        type="submit"
-        className="w-full data-[success=true]:bg-emerald-400"
-      >
-        {status === "waiting" ? (
-          <>
-            Carregar video
-            <Upload className="w-4 h-4 ml-2" />
-          </>
-        ) : (
-          statusMessages[status]
-        )}
+      <Button disabled={status !== "waiting"} type="submit" className="w-full">
+        Carregar video
+        <Upload className="w-4 h-4 ml-2" />
       </Button>
     </form>
   );

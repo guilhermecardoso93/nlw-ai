@@ -21,7 +21,7 @@ interface VideoInputFormProps {
   onVideoUploaded: (id: string) => void;
 }
 
-export function VideoForm(props: VideoInputFormProps) {
+export function VideoForm() {
   const [videoFile, setVideoFile] = useState<File | null>(null);
   const [status, setStatus] = useState<Status>("waiting");
   const promptInputRef = useRef<HTMLTextAreaElement>(null);
@@ -108,8 +108,6 @@ export function VideoForm(props: VideoInputFormProps) {
     });
 
     setStatus("success");
-
-    props.onVideoUploaded(videoId)
   }
 
   const previewURL = useMemo(() => {

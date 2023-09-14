@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { useCompletion } from "ai/react";
 import { Github, Wand2 } from "lucide-react";
 import { Button } from "./components/ui/button";
 import { Separator } from "./components/ui/separator";
@@ -23,24 +22,6 @@ export function App() {
   function handlePromptSelected(template: string) {
     console.log("oi");
   }
-
-  const {
-    input,
-    setInput,
-    handleInputChange,
-    handleSubmit,
-    completion,
-    isLoading,
-  } = useCompletion({
-    api: "http://localhost:3333/ai/complete",
-    body: {
-      videoId,
-      temperature,
-    },
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -66,14 +47,11 @@ export function App() {
             <Textarea
               placeholder="Inclua o prompt para a IA..."
               className="resize-none p-4 leading-relaxed"
-              value={input}
-              onChange={handleInputChange}
             />
             <Textarea
               placeholder="Resultado gerando pela IA..."
               readOnly
               className="resize-none p-4 leading-relaxed"
-              value={completion}
             />
           </div>
           <p className="text-sm text-muted-foreground">
@@ -87,10 +65,10 @@ export function App() {
           <VideoForm onVideoUploaded={setVideoId} />
           <Separator />
 
-          <form onSubmit={handleSubmit} className="space-y-6">
+          <form className="space-y-6">
             <div className="space-y-2">
               <Label>Prompt</Label>
-              <PromptSelect onPromptSelected={setInput} />
+              <PromptSelect onPromptSelected={handlePromptSelected} />
             </div>
 
             <div className="space-y-2">
@@ -127,7 +105,7 @@ export function App() {
 
             <Separator />
 
-            <Button type="submit" className="w-full" disabled={isLoading}>
+            <Button type="submit" className="w-full">
               Executar
               <Wand2 className="w-4 h-4 ml-2" />
             </Button>

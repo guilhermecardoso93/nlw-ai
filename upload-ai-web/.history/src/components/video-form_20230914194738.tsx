@@ -108,8 +108,6 @@ export function VideoForm(props: VideoInputFormProps) {
     });
 
     setStatus("success");
-
-    props.onVideoUploaded(videoId)
   }
 
   const previewURL = useMemo(() => {
